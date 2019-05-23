@@ -1,0 +1,39 @@
+```
+Post Request to trigger push notification
+
+URL https://exp.host/--/api/v2/push/send
+
+Body
+{
+  "to": "",
+  "title":"Mailbox update",
+  "body": "check your mail"
+}
+
+sample value
+"to" : "ExponentPushToken[2oAP1uEhC0oSOlfIpuHisN]"
+
+```
+
+```
+const firebaseurl="https://smartmailbox-a45ba.firebaseio.com";
+const schema = "smartmailbox";
+const key = "-LfVYlUqlknFF5axwrhu";
+const schema_push="pushnotification";
+export const geturl = firebaseurl+"/"+schema+"/"+key+".json";
+export const puturl = firebaseurl+"/"+schema+"/"+key+".json";
+export const posturl = firebaseurl+"/"+schema_push+".json";
+
+
+try{
+  let getdata = await axios.get(geturl)
+  console.log("getdata ",getdata.data)
+  let updatedata = await axios.put(puturl,{...getdata.data,mailcount:getdata.data.mailcount+1})
+  console.log("updatedata ",updatedata.data)
+}
+catch(err){
+  console.log("err ",err);
+}
+
+
+```
